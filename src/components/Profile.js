@@ -6,21 +6,23 @@ function Profile() {
     const today = new Date()
     
     return (
-        <section style={{display: "flex"}}>
+        <section className="profile">
+            <div>
+                <div className="member-info">
+                    <p>Member Name</p>
+                    <p>Email</p>
+                    <p>Phone</p>
+                    <button>Edit</button>
+                </div>
+                <div className="member-info">
+                    <button>Daily Activity History</button>
+                    <button>Time Card</button>
+                </div>
+            </div>
             <div>
                 <h2>{today.toDateString()}</h2>
                 <DailyActivityTracker />
             </div>
-            <div>
-                <h2>Name</h2>
-                <p>Member Name goes Here</p>
-                <h2>Email</h2>
-                <p>Member Email goes here</p>
-                <h2>Phone</h2>
-                <button>Daily Activity History</button>
-                <button>Time Card</button>
-            </div>
-            
         </section>
     )
 }
