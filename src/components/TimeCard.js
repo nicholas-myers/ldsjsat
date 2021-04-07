@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function TimeCard({ today }) {
   const week = {
@@ -54,6 +56,9 @@ function TimeCard({ today }) {
     hours[index] = e.target.value
     setHours([...hours])
   }
+
+  const [associateStart, setAssociateStart] = useState(new Date())
+  const [developerStart, setDeveloperStart] = useState(new Date())
   return (
     <section>
       <p>
@@ -81,15 +86,16 @@ function TimeCard({ today }) {
           Associate Name: <input />
         </label>
         <label>
-          Date: <input />
+          Date: <DatePicker selected={associateStart} />
         </label>
       </div>
       <div>
         <label>
-          Job Developer: <input />
+          Job Developer: 
+          <input />
         </label>
         <label>
-          Date: <input />
+          Date: <DatePicker selected={developerStart} />
         </label>
       </div>
       <div>
