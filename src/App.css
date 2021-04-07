@@ -29,6 +29,20 @@ header div {
   justify-content: space-around;
 }
 
+.dat {
+  padding: 3%;
+}
+
+.instructions {
+  width: 50%;
+}
+
+.instructions h2 {
+  text-align: left;
+}
+.instructions p {
+  text-align: left;
+}
 
 .week-day {
   border: 1px solid black;
