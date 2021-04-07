@@ -2,17 +2,33 @@
   box-sizing: border-box;
   max-width: 100%;
   font-size: 2rem;
+  text-align: center;
 }
 
 html {
   font-size: 62.5%;
 }
 
+h2, p, a,  button {
+  color: #135A75;
+}
+
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 3%;
+  border-bottom: 1px solid black;
+  background-color: #135A75;
+  color: white;
 }
+
+header div {
+  display: flex;
+  width: 30%;
+  justify-content: space-around;
+}
+
 
 .week-day {
   border: 1px solid black;

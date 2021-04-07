@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 
 function TimeCard({ today }) {
   const week = {
@@ -21,7 +21,17 @@ function TimeCard({ today }) {
   const activeDay = {
     backgroundColor: 'skyblue',
   }
+  const [totalHours, setTotalHours] = useState(0)
 
+  
+  const [hours, setHours] = useState([0, 0, 0, 0, 0, 0])
+  useEffect(() => {
+    let count = 0
+    hours.map(day => {
+      count += Number(day)
+    })
+    setTotalHours(count)
+  }, [hours])
   const todayString = today.toDateString();
   const todayList = todayString.split(" ");
   const todaysDay = todayList[0];
@@ -40,7 +50,10 @@ function TimeCard({ today }) {
     dateList.splice(2, 0, ",");
     week[weekday] = dateList.join(" ");
   });
-
+  const changeHours = (e, index) => {
+    hours[index] = e.target.value
+    setHours([...hours])
+  }
   return (
     <section>
       <p>
@@ -48,17 +61,20 @@ function TimeCard({ today }) {
         lunch breaks.
       </p>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        {Object.keys(week).map((weekday) => {
+        {Object.keys(week).map((weekday, i) => {
           return (
             <div className="week-day" style={weekday === todaysDay ? activeDay : null}>
               <h2>{weekday}</h2>
               <p>{week[weekday]}</p>
-              <input type="number" min="0" max="7" />
+              <input onChange={(e) => changeHours(e, i)} type="number" min="0" max="7" value={hours[i]}/>
             </div>
           );
         })}
+        <div className="week-day">
+          <h2>Total Hours</h2>
+          <p>{totalHours}</p>
+        </div>
       </div>
-      <h2>Total Hours</h2>
       <h2>Electronic Signature</h2>
       <div>
         <label>
