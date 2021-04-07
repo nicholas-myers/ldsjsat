@@ -1,6 +1,11 @@
 * {
   box-sizing: border-box;
   max-width: 100%;
+  font-size: 2rem;
+}
+
+html {
+  font-size: 62.5%;
 }
 
 header {
@@ -11,4 +16,19 @@ header {
 
 .week-day {
   border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-height: 100%;
+  padding: 1%;
+}
+
+.week-day h2, p {
+  height: 10%;
+}
+.week-day input {
+  height: 50%;
+  font-size: 2rem;
+  text-align: center;
 }
