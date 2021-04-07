@@ -31,7 +31,7 @@ function DailyActivityTracker() {
   const addContact = () => {
     if (contacts.length < 10) {
       contacts.push(contact);
-      console.log(contacts);
+  
       return setContacts([...contacts]);
     }
   };
@@ -43,7 +43,6 @@ function DailyActivityTracker() {
       ...contacts[i],
       [e.target.name]: e.target.value,
     };
-    console.log(contacts[i]);
     setContacts([...contacts]);
   };
 
@@ -314,11 +313,15 @@ function DailyActivityTracker() {
                 </label>
                 <label>
                   Follow-up
-                  <DatePicker name="followup_date" selected={meetingStart} onChange={(date) => {
-                        setMeetingStart(date);
-                        meetings[index].followup_date = date;
-                        setMeetings([...meetings]);
-                      }} />
+                  <DatePicker
+                    name="followup_date"
+                    selected={meetingStart}
+                    onChange={(date) => {
+                      setMeetingStart(date);
+                      meetings[index].followup_date = date;
+                      setMeetings([...meetings]);
+                    }}
+                  />
                 </label>
               </div>
             </div>

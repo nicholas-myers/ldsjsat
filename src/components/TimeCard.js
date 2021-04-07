@@ -31,6 +31,7 @@ function TimeCard({ today }) {
     let count = 0
     hours.map(day => {
       count += Number(day)
+      return count
     })
     setTotalHours(count)
   }, [hours])
@@ -51,6 +52,7 @@ function TimeCard({ today }) {
     dateList.shift();
     dateList.splice(2, 0, ",");
     week[weekday] = dateList.join(" ");
+    return week
   });
   const changeHours = (e, index) => {
     hours[index] = e.target.value
@@ -59,6 +61,7 @@ function TimeCard({ today }) {
 
   const [associateStart, setAssociateStart] = useState(new Date())
   const [developerStart, setDeveloperStart] = useState(new Date())
+
   return (
     <section>
       <p>
@@ -68,7 +71,7 @@ function TimeCard({ today }) {
       <div style={{ display: "flex", justifyContent: "center" }}>
         {Object.keys(week).map((weekday, i) => {
           return (
-            <div className="week-day" style={weekday === todaysDay ? activeDay : null}>
+            <div key={i} className="week-day" style={weekday === todaysDay ? activeDay : null}>
               <h2>{weekday}</h2>
               <p>{week[weekday]}</p>
               <input onChange={(e) => changeHours(e, i)} type="number" min="0" max="7" value={hours[i]}/>
@@ -86,7 +89,7 @@ function TimeCard({ today }) {
           Associate Name: <input />
         </label>
         <label>
-          Date: <DatePicker selected={associateStart} />
+          Date: <DatePicker selected={associateStart} onChange={date => setAssociateStart(date)} />
         </label>
       </div>
       <div>
@@ -95,7 +98,7 @@ function TimeCard({ today }) {
           <input />
         </label>
         <label>
-          Date: <DatePicker selected={developerStart} />
+          Date: <DatePicker selected={developerStart} onChange={date => setDeveloperStart(date)} />
         </label>
       </div>
       <div>
