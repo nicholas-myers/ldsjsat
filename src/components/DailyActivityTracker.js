@@ -47,6 +47,7 @@ function DailyActivityTracker() {
     setContacts([...contacts]);
   };
 
+  const [meetingStart, setMeetingStart] = useState(new Date());
   const [meetings, setMeetings] = useState([]);
   const face2face = {
     contact_name: "",
@@ -74,7 +75,7 @@ function DailyActivityTracker() {
   };
 
   return (
-    <section className="dat" style={{display: "flex"}}>
+    <section className="dat" style={{ display: "flex" }}>
       <div>
         <div className="instructions">
           <h2>Daily Goals</h2>
@@ -82,28 +83,37 @@ function DailyActivityTracker() {
           <p>10 Contacts</p>
           <p>2 Face-to-Face Meetings</p>
         </div>
-        <div className="instructions" style={{display: "flex", flexDirection: "column", justifyContent: "flex-start", textAlign: "left"}}>
+        <div
+          className="instructions"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-start",
+            textAlign: "left",
+          }}
+        >
           <h2>Instructions</h2>
           <p>Contact Name: Record the contact's name.</p>
           <p>Organization: Record the company name or organization.</p>
           <p>
-            Email or Phone Number: Record the contact's email address, phone number
-            and website.
+            Email or Phone Number: Record the contact's email address, phone
+            number and website.
           </p>
           <p>
-            Comments: Record results of the conversation. Record any follow-up items
-            you'll do, and put a follow up date in the last column.
+            Comments: Record results of the conversation. Record any follow-up
+            items you'll do, and put a follow up date in the last column.
           </p>
           <p>
             Kind of Contact: Identify the type of contact (application, resume,
             thank-you note, employer call, network call).
           </p>
           <p>
-            Kind of Meeting: Identify the type of interview (informational or job).
+            Kind of Meeting: Identify the type of interview (informational or
+            job).
           </p>
           <p>
-            Follow-up date: record the date that you will call the contact. Record
-            what the follow-up will be in the "Comments" field.
+            Follow-up date: record the date that you will call the contact.
+            Record what the follow-up will be in the "Comments" field.
           </p>
         </div>
       </div>
@@ -113,9 +123,13 @@ function DailyActivityTracker() {
         <div style={{ display: "flex", flexDirection: "column" }}>
           {resources.map((resource, index) => {
             return (
-              <div >
+              <div>
                 <label>
-                  {index + 1} <input value={resource.resource_description} onChange={(e, i) => changeResource(e, index)}/>
+                  {index + 1}{" "}
+                  <input
+                    value={resource.resource_description}
+                    onChange={(e, i) => changeResource(e, index)}
+                  />
                 </label>
               </div>
             );
@@ -126,29 +140,92 @@ function DailyActivityTracker() {
         <div>
           {contacts.map((contact, index) => {
             return (
-              <div style={{ display: "flex", alignItems: "center", flexFlow: "row wrap" }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  flexFlow: "row wrap",
+                }}
+              >
                 <h3>{index + 1}</h3>
-                <div style={{display: "flex", justifyContent: "flex-start", flexFlow: "row wrap"}}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    flexFlow: "row wrap",
+                  }}
+                >
                   <label>
-                    Contact Name <input name="contact_name" value={contact.contact_name} onChange={(e) => {changeContact(e, index)}} />
+                    Contact Name{" "}
+                    <input
+                      name="contact_name"
+                      value={contact.contact_name}
+                      onChange={(e) => {
+                        changeContact(e, index);
+                      }}
+                    />
                   </label>
                   <label>
-                    Organization <input name="organization" value={contact.organization} onChange={(e) => {changeContact(e, index)}} />
+                    Organization{" "}
+                    <input
+                      name="organization"
+                      value={contact.organization}
+                      onChange={(e) => {
+                        changeContact(e, index);
+                      }}
+                    />
                   </label>
                   <label>
-                    Email <input name="email" value={contact.email} onChange={(e) => {changeContact(e, index)}} />
+                    Email{" "}
+                    <input
+                      name="email"
+                      value={contact.email}
+                      onChange={(e) => {
+                        changeContact(e, index);
+                      }}
+                    />
                   </label>
                   <label>
-                    Phone <input name="phone" value={contact.phone} onChange={(e) => {changeContact(e, index)}} />
+                    Phone{" "}
+                    <input
+                      name="phone"
+                      value={contact.phone}
+                      onChange={(e) => {
+                        changeContact(e, index);
+                      }}
+                    />
                   </label>
                   <label>
-                    Comments <input name="comments" value={contact.comments} onChange={(e) => {changeContact(e, index)}} />
+                    Comments{" "}
+                    <input
+                      name="comments"
+                      value={contact.comments}
+                      onChange={(e) => {
+                        changeContact(e, index);
+                      }}
+                    />
                   </label>
                   <label>
-                    Contact Type <input name="contact_type" value={contact.contact_type} onChange={(e) => {changeContact(e, index)}} />
+                    Contact Type{" "}
+                    <input
+                      name="contact_type"
+                      value={contact.contact_type}
+                      onChange={(e) => {
+                        changeContact(e, index);
+                      }}
+                    />
                   </label>
                   <label>
-                    Follow-up <input name="followup_date" value={contact.followup_date} onChange={(e) => {changeContact(e, index)}} />
+                    Follow-up{" "}
+                    <DatePicker
+                      name="followup_date"
+                      selected={contactStart}
+                      onChange={(date) => {
+                        setContactStart(date);
+                        contacts[index].followup_date = date;
+                        setContacts([...contacts]);
+                      }}
+                    />
                   </label>
                 </div>
               </div>
@@ -168,27 +245,80 @@ function DailyActivityTracker() {
               }}
             >
               <h3>{index + 1}</h3>
-              <div style={{display: "flex", justifyContent: "flex-start", flexFlow: "row wrap"}}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  flexFlow: "row wrap",
+                }}
+              >
                 <label>
-                  Contact Name <input name="contact_name" value={meeting.contact_name} onChange={(e) => {changeFace2Face(e, index)}} />
+                  Contact Name{" "}
+                  <input
+                    name="contact_name"
+                    value={meeting.contact_name}
+                    onChange={(e) => {
+                      changeFace2Face(e, index);
+                    }}
+                  />
                 </label>
                 <label>
-                  Organization <input name="organization" value={meeting.organization} onChange={(e) => {changeFace2Face(e, index)}} />
+                  Organization{" "}
+                  <input
+                    name="organization"
+                    value={meeting.organization}
+                    onChange={(e) => {
+                      changeFace2Face(e, index);
+                    }}
+                  />
                 </label>
                 <label>
-                  Email <input name="email" value={meeting.email} onChange={(e) => {changeFace2Face(e, index)}} />
+                  Email{" "}
+                  <input
+                    name="email"
+                    value={meeting.email}
+                    onChange={(e) => {
+                      changeFace2Face(e, index);
+                    }}
+                  />
                 </label>
                 <label>
-                  Phone Number <input name="phone" value={meeting.phone} onChange={(e) => {changeFace2Face(e, index)}} />
+                  Phone Number{" "}
+                  <input
+                    name="phone"
+                    value={meeting.phone}
+                    onChange={(e) => {
+                      changeFace2Face(e, index);
+                    }}
+                  />
                 </label>
                 <label>
-                  Comments <input name="comments" value={meeting.comments} onChange={(e) => {changeFace2Face(e, index)}} />
+                  Comments{" "}
+                  <input
+                    name="comments"
+                    value={meeting.comments}
+                    onChange={(e) => {
+                      changeFace2Face(e, index);
+                    }}
+                  />
                 </label>
                 <label>
-                  Meeting Type <input name="meeting_type" value={meeting.meeting_type} onChange={(e) => {changeFace2Face(e, index)}} />
+                  Meeting Type{" "}
+                  <input
+                    name="meeting_type"
+                    value={meeting.meeting_type}
+                    onChange={(e) => {
+                      changeFace2Face(e, index);
+                    }}
+                  />
                 </label>
                 <label>
-                  Follow-up <input name="followup_date" value={meeting.followup_date} onChange={(e) => {changeFace2Face(e, index)}} />
+                  Follow-up
+                  <DatePicker name="followup_date" selected={meetingStart} onChange={(date) => {
+                        setMeetingStart(date);
+                        meetings[index].followup_date = date;
+                        setMeetings([...meetings]);
+                      }} />
                 </label>
               </div>
             </div>

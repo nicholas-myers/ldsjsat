@@ -1,16 +1,17 @@
 * {
   box-sizing: border-box;
   max-width: 100%;
-  font-size: 2rem;
+  /* font-size: 2rem; */
   text-align: center;
 }
 
 html {
-  font-size: 62.5%;
+  /* font-size: 62.5%; */
 }
 
-h2, p, a,  button {
+h2, p, a, button, input {
   color: #135A75;
+  font-size: 1.5rem;
 }
 
 header {
