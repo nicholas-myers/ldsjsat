@@ -18,6 +18,10 @@ function TimeCard({ today }) {
     Fri: 7,
   };
 
+  const activeDay = {
+    backgroundColor: 'skyblue',
+  }
+
   const todayString = today.toDateString();
   const todayList = todayString.split(" ");
   const todaysDay = todayList[0];
@@ -46,7 +50,7 @@ function TimeCard({ today }) {
       <div style={{ display: "flex", justifyContent: "center" }}>
         {Object.keys(week).map((weekday) => {
           return (
-            <div className="week-day">
+            <div className="week-day" style={weekday === todaysDay ? activeDay : null}>
               <h2>{weekday}</h2>
               <p>{week[weekday]}</p>
               <input type="number" min="0" max="7" />
