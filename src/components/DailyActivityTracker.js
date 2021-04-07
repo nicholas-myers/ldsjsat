@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function DailyActivityTracker() {
   const [resources, setResources] = useState([]);
@@ -11,7 +13,10 @@ function DailyActivityTracker() {
     }
   };
 
-  const changeResource = () => {};
+  const changeResource = (i, e) => {
+    resources[i].resource_description = e.target.value;
+    setResources([...resources]);
+  };
 
   const [contacts, setContacts] = useState([]);
   const contact = {
@@ -26,8 +31,20 @@ function DailyActivityTracker() {
   const addContact = () => {
     if (contacts.length < 10) {
       contacts.push(contact);
+      console.log(contacts);
       return setContacts([...contacts]);
     }
+  };
+
+  const [contactStart, setContactStart] = useState(new Date());
+
+  const changeContact = (e, i) => {
+    contacts[i] = {
+      ...contacts[i],
+      [e.target.name]: e.target.value,
+    };
+    console.log(contacts[i]);
+    setContacts([...contacts]);
   };
 
   const [meetings, setMeetings] = useState([]);
@@ -126,7 +143,14 @@ function DailyActivityTracker() {
         <button onClick={addMeeting}>New Face-to-Face</button>
         {meetings.map((meeting, index) => {
           return (
-            <div style={{ display: "flex", alignItems: "center" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                flexFlow: "row wrap",
+                justifyContent: "center",
+              }}
+            >
               <h3>{index + 1}</h3>
               <label>
                 Contact Name <input value={meeting.contact_name} />
