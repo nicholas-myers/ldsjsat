@@ -3,3 +3,7 @@ header {
   justify-content: space-between;
   align-items: center;
 }
+
+.week-day {
+  border: 1px solid black;
+}
