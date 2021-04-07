@@ -122,7 +122,7 @@ function DailyActivityTracker() {
         <div style={{ display: "flex", flexDirection: "column" }}>
           {resources.map((resource, index) => {
             return (
-              <div>
+              <div key={index}>
                 <label>
                   {index + 1}{" "}
                   <input
@@ -139,7 +139,7 @@ function DailyActivityTracker() {
         <div>
           {contacts.map((contact, index) => {
             return (
-              <div
+              <div key={index}
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -235,7 +235,7 @@ function DailyActivityTracker() {
         <button onClick={addMeeting}>New Face-to-Face</button>
         {meetings.map((meeting, index) => {
           return (
-            <div
+            <div key={index}
               style={{
                 display: "flex",
                 alignItems: "center",
